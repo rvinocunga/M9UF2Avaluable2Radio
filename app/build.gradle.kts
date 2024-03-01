@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.m8uf2avaluable2radio"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.m8uf2avaluable2radio"

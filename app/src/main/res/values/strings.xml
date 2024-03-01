@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">M8UF2Avaluable2Radio</string>
+    <string name="catalunya_radio_url">https://shoutcast.ccma.cat/ccma/catalunyaradioHD.mp3</string>
+    <string name="catalunya_informacio_url">https://shoutcast.ccma.cat/ccma/catalunyainformacioHD.mp3</string>
+    <string name="catalunya_musica_url">https://shoutcast.ccma.cat/ccma/catalunyamusicaHD.mp3</string>
+    <string name="icat_fm_url">https://shoutcast.ccma.cat/ccma/icatHD.mp3</string>
 </resources>
