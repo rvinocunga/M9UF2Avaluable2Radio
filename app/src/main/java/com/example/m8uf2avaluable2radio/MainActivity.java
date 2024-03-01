@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void abrirSegundaActividad(String nombreEmisora, String descripcionEmisora, String streamingUrl) {
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        intent.putExtra("nombre_emisora", nombreEmisora);
+        intent.putExtra("descripcion_emisora", descripcionEmisora);
+        intent.putExtra("streaming_url", streamingUrl); // Agregar la URL del streaming al Intent
         startActivity(intent);
     }
 }
