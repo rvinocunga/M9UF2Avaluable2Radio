@@ -7,53 +7,47 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
+
+    private HashMap<Integer, String> radioURL = new HashMap<>();
+    private HashMap<Integer, String> radioNombre = new HashMap<>();
+    private HashMap<Integer, String> radioDescripcion = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Obtener referencias a los ImageButtons
-        ImageButton catalunyaRadioButton = findViewById(R.id.imageButton);
-        ImageButton catalunyaInformacioButton = findViewById(R.id.imageButton2);
-        ImageButton catalunyaMusicaButton = findViewById(R.id.imageButton3);
-        ImageButton icatFMButton = findViewById(R.id.imageButton4);
-
-        // Configurar clic listeners para cada ImageButton
-        catalunyaRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirSegundaActividad("Catalunya Radio", "Descripción de Catalunya Radio", getString(R.string.catalunya_radio_url));
-            }
-        });
-
-        catalunyaInformacioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirSegundaActividad("Catalunya Informació", "Descripción de Catalunya Informació",  getString(R.string.catalunya_informacio_url));
-            }
-        });
-
-        catalunyaMusicaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirSegundaActividad("Catalunya Música", "Descripción de Catalunya Música", getString(R.string.catalunya_musica_url));
-            }
-        });
-
-        icatFMButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirSegundaActividad("iCat FM", "Descripción de iCat FM", getString(R.string.icat_fm_url));
-            }
-        });
+        initMaps();
     }
 
-    private void abrirSegundaActividad(String nombreEmisora, String descripcionEmisora, String streamingUrl) {
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        intent.putExtra("nombre_emisora", nombreEmisora);
-        intent.putExtra("descripcion_emisora", descripcionEmisora);
-        intent.putExtra("streaming_url", streamingUrl); // Agregar la URL del streaming al Intent
-        startActivity(intent);
+    public void actionButton(View view){
+        Intent intent = new Intent(this.getApplicationContext(), SecondActivity.class);
+        intent.putExtra("url", radioURL.get(view.getId()));
+        intent.putExtra("nombre", radioNombre.get(view.getId()));
+        intent.putExtra("descripcion", radioDescripcion.get(view.getId()));
+        this.startActivity(intent);
     }
+
+    private void initMaps() {
+        radioURL.put(R.id.imageButton, "https://shoutcast.ccma.cat/ccma/catalunyaradioHD.mp3");
+        radioNombre.put(R.id.imageButton, "Catalunya Radio");
+        radioDescripcion.put(R.id.imageButton, "Descripcion de la radio");
+
+        radioURL.put(R.id.imageButton2, "https://shoutcast.ccma.cat/ccma/catalunyainformacioHD.mp3");
+        radioNombre.put(R.id.imageButton2, "Catalunya Informacio");
+        radioDescripcion.put(R.id.imageButton2, "Descripcion de la radio");
+
+        radioURL.put(R.id.imageButton3, "https://shoutcast.ccma.cat/ccma/catalunyamusicaHD.mp3");
+        radioNombre.put(R.id.imageButton3, "Catalunya Musica");
+        radioDescripcion.put(R.id.imageButton3, "Descripcion de la radio");
+
+        radioURL.put(R.id.imageButton4, "https://shoutcast.ccma.cat/ccma/icatHD.mp3");
+        radioNombre.put(R.id.imageButton4, "ICAT FM");
+        radioDescripcion.put(R.id.imageButton4, "Descripcion de la radio");
+
+
+    }
+
 }
